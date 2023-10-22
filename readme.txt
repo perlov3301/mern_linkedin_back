@@ -16,7 +16,20 @@ post http://localhost:8000/api/articles/learn-react/upvote
 req= body(from json)+params(/:... from url)
 "attr":{"port":27017,"ssl":"off"}
 mongosh
+use react-blog-db
 db.articles.insertOne()/insertMany()
 db.getCollectionNames()
 db.articles.find()/find({name:'leart-react'})
 npm run dev
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/perlov3301/mern_linkedin_back.git
+or
+git remote set-url origin https://github.com/perlov3301/mern_linkedin_back.git
+git push -u origin main
+mongod --dbpath ./mongo-db-data/
+"ctx":"listener","msg":"Listening on","attr":{"address":"127.0.0.1"}
+"ctx":"listener","msg":"Waiting for connections","attr":{"port":27017,"ssl":"off"}
+

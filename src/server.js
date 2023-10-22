@@ -1,14 +1,34 @@
 import express from "express";
+import { MongoClient } from "mongodb";
 // PUT /articles/learn-react/upvote
 const app = express();
 // enable json in request.body (in payload)
 app.use(express.json());
-// define upvote end point put(path,(req,res)=>{})
-
-app.get('/api/articles/:name', (req, res)=> {
-  
+//download data: get name_parameter->get info from db
+app.get('/api/articles/:name', async (req,res)=> {
+   const { name } = req.params;
+   // listening at localhost to port 27017.
+  // from mongodb.com: const db = connect("localhost:27017/react-blog-db");
+   //we do need actually IP=127.0.0.1
+   const client = new MongoClient('mongodb://127.0.0.1:27017');
+   await client.connect();
+   // in mongosh: use react-blog-db
+   const db1 = client.db('react-blog-db');
+   // in mongosh: db.articles.findOne({name:name});
+   const article = await db1.collection('articles').findOne({ name:name });
+  // if (name) {
+  //   const article = await db1.collection('articles').findOne({ name });
+  // } else {res.send("article din't match");}
+  //  res.send(article);
+   if (article) {
+    res.json(article);
+   } else {
+    res.sendStatus(404);
+    // res.status(404).send("...")
+   }
+  // res.json(article);
 });
-
+// define upvote end point put(path,(req,res)=>{})
 app.put('/api/articles/:name/upvote', (req,res)=>{
 //    const name = req.params.name;
    const { name } = req.params;
