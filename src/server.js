@@ -1,5 +1,6 @@
 import express from "express";
-import { MongoClient } from "mongodb";
+// import { MongoClient } from "mongodb";
+import { db1, connectToDb } from './db';
 // PUT /articles/learn-react/upvote
 const app = express();
 // enable json in request.body (in payload)
@@ -44,8 +45,8 @@ app.post('/api/articles/:name/comments',async (req,res)=>{
   
   const client = new MongoClient('mongodb://127.0.0.1:27017')
   await client.connect();
-  const db1= client.db('react-blog-db');
 
+  const db1= client.db('react-blog-db');
   await db1.collection('articles').updateOne(
       { name },
       {$push: {comments: { postedBy, text } },
