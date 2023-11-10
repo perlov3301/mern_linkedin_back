@@ -33,3 +33,5 @@ mongod --dbpath ./mongo-db-data/
 "ctx":"listener","msg":"Listening on","attr":{"address":"127.0.0.1"}
 "ctx":"listener","msg":"Waiting for connections","attr":{"port":27017,"ssl":"off"}
 
+netsh wlan show profile
+netsh wlan show profile "NETWORK NAME" key=clear

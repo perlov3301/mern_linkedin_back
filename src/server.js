@@ -33,8 +33,11 @@ app.put('/api/articles/:name/upvote', async (req,res)=>{
 
    const article = await db1.collection('articles').findOne({ name });
    if (article) { 
-    const msg1=`the ${name} article now has ${article.upvotes} upvotes `;
-    res.send(msg1);
+    //const msg1=`the ${name} article now has ${article.upvotes} upvotes `;
+        //res.send(msg1);
+    // if we add axios.put(${article name as ID}) within ArticlePage.js
+    // we will get updated article by itself=comment.text,comment.author,upvotes
+    res.json(article);
  }  else {
     res.send(`the article \"${name}\" does\'nt exist`);
  }
