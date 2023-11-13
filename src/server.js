@@ -58,7 +58,9 @@ app.post('/api/articles/:name/comments',async (req,res)=>{
        );
   const article = await db1.collection('articles').findOne({ name });
   if (article) {
-    res.send(article.comments);
+   // res.send(article.comments);
+// after axios.post() within AddCommentForm we send updated article
+     res.json(article);
   } else {
     res.send(`that article does\'nt exist yet`);
   }
